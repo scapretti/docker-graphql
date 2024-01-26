@@ -12,26 +12,34 @@ jobs:
 
     runs-on: ubuntu-latest
 
+	# Los steps son literalmente pasos que queremos ejecutar en forma secuencial, c/u haciendo una tarea especifica.
+	
     steps:
+	# Este paso lo que hace es tomar todo el código que hay en nuestro repositorio.
     - name: Checkout code
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
     
+	# Este paso realiza la autenticación en DockerHub. Para ello utilizamos los secrets que previamente generamos en GitHub.
+	# Definimos variables de entorno, para utilizarlas en este paso.
+	# El PIPE que pongo al contado del run, indica que cada una de las siguientes líneas que ponga van a ser comandos independientes.
     - name: Docker Login
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-
+    
+	# Hacemos el build, construimos la imagen.
     - name: Build Docker image
       run: |
-        docker build -t scapretti/docker-graphql:0.0.2 .
-    
+        docker build -t scapretti/docker-graphql:0.0.3 .
+
+    # Hacemos el push de la imagen en DockerHub, en un paso anterior hicimos el login en DockerHub.
     - name: Push Docker image
       run: |
-        docker push scapretti/docker-graphql:0.0.2
+        docker push scapretti/docker-graphql:0.0.3
     
 #    - name: Build the Docker image
 #      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)

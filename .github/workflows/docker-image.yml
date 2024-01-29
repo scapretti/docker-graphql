@@ -37,9 +37,11 @@ jobs:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         NEW_VERSION: ${{ steps.version.outputs.version }}
+        VERSION_TYPE: ${{ steps.version.outputs.version_type }}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "New version: $NEW_VERSION !!!!!"
+        echo "Version Tyoe: $VERSION_TYPE !!!!!"
 
 # Hacemos el build, construimos la imagen.
 #     - name: Build Docker image

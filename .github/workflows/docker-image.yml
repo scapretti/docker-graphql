@@ -41,13 +41,13 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "New version: $NEW_VERSION !!!!!"
 
-# # Hacemos el build, construimos la imagen.
+# Hacemos el build, construimos la imagen.
 #     - name: Build Docker image
 #       run: |
 #         docker build -t scapretti/docker-graphql:0.0.3 .
 #         docker build -t scapretti/docker-graphql:latest .
 
-# # Hacemos el push de la imagen en DockerHub, en un paso anterior hicimos el login en DockerHub.
+# Hacemos el push de la imagen en DockerHub, en un paso anterior hicimos el login en DockerHub.
 #     - name: Push Docker image
 #       run: |
 #         docker push scapretti/docker-graphql:0.0.3

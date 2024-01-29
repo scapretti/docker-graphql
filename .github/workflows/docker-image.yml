@@ -28,8 +28,7 @@ jobs:
         minor_patterns: "feat:"
         format: "${major}.${minor}.${patch}-prerelease${increment}"
       id: version
-            
-
+   
 # Este paso realiza la autenticación en DockerHub. Para ello utilizamos los secrets que previamente generamos en GitHub.
 # Definimos variables de entorno, para utilizarlas en este paso.
 # El PIPE que pongo al contado del run, indica que cada una de las siguientes líneas que ponga van a ser comandos independientes.
